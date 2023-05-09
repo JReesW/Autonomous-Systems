@@ -7,7 +7,7 @@ maze1 = Maze()
 max_policy = MaxPolicy()
 max_agent = Agent(
     maze=maze1,
-    start_state=maze1.state_at((1, 3)),
+    start_state=maze1.state_at((2, 3)),
     policy=max_policy
 )
 
@@ -15,7 +15,7 @@ maze2 = Maze()
 random_policy = RandomPolicy()
 random_agent = Agent(
     maze=maze2,
-    start_state=maze2.state_at((1, 3)),
+    start_state=maze2.state_at((2, 3)),
     policy=random_policy
 )
 
@@ -34,8 +34,8 @@ def reset():
     paused = True
     terminated = False
     tick = 0
-    max_agent.state = maze1.state_at((1, 3))
-    random_agent.state = maze2.state_at((1, 3))
+    max_agent.state = maze1.state_at((2, 3))
+    random_agent.state = maze2.state_at((2, 3))
 
 
 def handle_events(events):
@@ -46,6 +46,9 @@ def handle_events(events):
         sys.exit()
 
     for event in events:
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_p:
                 paused = not paused
